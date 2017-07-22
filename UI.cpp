@@ -1,6 +1,5 @@
 #include "UI.h"
 #include <SDL_events.h>
-#include <SDL_system.h>
 
 UI::UI() {
     window = SDL_CreateWindow("Triangles",
@@ -22,21 +21,34 @@ void UI::run() {
                 quit = true;
             }
         }
+        population->evolve();
+
         render();
     }
-}
-
-void UI::free() {
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    window = nullptr;
-    renderer = nullptr;
 }
 
 void UI::render() {
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 
+    target->render(renderer);
+    population->getBest().render(renderer);
+
     // Render elements here
     SDL_RenderPresent(renderer);
+}
+
+void UI::setTarget(Target *target) {
+    this->target = target;
+}
+
+void UI::setPopulation(Population *population) {
+    this->population = population;
+}
+
+void UI::free() {
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    renderer = nullptr;
+    window = nullptr;
 }
