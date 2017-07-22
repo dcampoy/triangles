@@ -1,5 +1,5 @@
-#include "UI.h"
-#include "Population.h"
+#include "ui/UI.h"
+#include "model/Population.h"
 #include <SDL2/SDL_image.h>
 #include <SDL_ttf.h>
 #include <stdexcept>

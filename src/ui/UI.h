@@ -3,8 +3,8 @@
 
 #include <SDL_video.h>
 #include <SDL_system.h>
-#include "Target.h"
-#include "Population.h"
+#include "../model/Target.h"
+#include "../model/Population.h"
 
 const int UI_WINDOW_WIDTH = 640;
 const int UI_WINDOW_HEIGHT = 480;

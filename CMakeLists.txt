@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.7)
 project(triangles)
 
 set(CMAKE_CXX_STANDARD 11)
-set(SOURCE_FILES main.cpp UI.cpp UI.h Target.cpp Target.h Individual.cpp Individual.h Population.cpp Population.h)
-
+set(SOURCE_MODEL_FILES src/model/Target.cpp src/model/Target.h src/model/Individual.cpp src/model/Individual.h src/model/Population.cpp src/model/Population.h)
+set(SOURCE_UI_FILES src/ui/UI.cpp src/ui/UI.h)
+set(SOURCE_FILES src/main.cpp ${SOURCE_MODEL_FILES} ${SOURCE_UI_FILES})
 add_executable(triangles ${SOURCE_FILES})
 
 INCLUDE(FindPkgConfig)
