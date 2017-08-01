@@ -7,7 +7,9 @@ Individual::Individual() {
 
 Individual* Individual::createMonogen() {
     Individual* monogen = new Individual;
-    monogen->genotype.push_back(generateRandomGen());
+    for (int i=0; i<100; i++) {
+        monogen->genotype.push_back(generateRandomGen());
+    }
     return monogen;
 }
 
@@ -17,8 +19,8 @@ Individual::~Individual() {
 
 Individual* Individual::reproduce(double mutationFactor) {
 
-    double dupProb = 0.029;
-    double randProb = 0.01;
+    double dupProb = 0.00;
+    double randProb = 0.03;
     double remProb = 0.07;
     double transProb = 0.30;
     double cromaticProb = 0.30;
@@ -132,12 +134,16 @@ void Individual::splitTriangle(const Individual::Triangle &t, Individual::Triang
 
 Individual::Triangle Individual::generateRandomGen() {
     Triangle t2;
-    t2.px[0] = rand() % 128;
-    t2.py[0] = rand() % 192;
-    t2.px[1] = rand() % 128;
-    t2.py[1] = rand() % 192;
-    t2.px[2] = rand() % 128;
-    t2.py[2] = rand() % 192;
+    int cx = rand() % 128;
+    int cy = rand() % 192;
+
+    t2.px[0] = cx + rand() % 30;
+    t2.py[0] = cy + rand() % 30;
+    t2.px[1] = cx + rand() % 30;
+    t2.py[1] = cy + rand() % 30;
+    t2.px[2] = cx + rand() % 30;
+    t2.py[2] = cy + rand() % 30;
+
     uint8_t alpha = (uint8_t) (rand() % 255);
     uint8_t red = (uint8_t) (rand() % 255);
     uint8_t green = (uint8_t) (rand() % 255);

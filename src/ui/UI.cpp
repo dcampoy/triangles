@@ -20,8 +20,7 @@ void UI::run() {
     SDL_Event event;
     Uint32 initial = SDL_GetTicks();
     int lastReport = 0;
-
-    std::cout << "Complexity cost = 0" << std::endl;
+    int epoc = 0;
 
     while (!quit) {
         while (SDL_PollEvent(&event) != 0) {
@@ -29,13 +28,16 @@ void UI::run() {
                 quit = true;
             }
         }
-        population->evolve();
 
-        int time = (SDL_GetTicks() - initial)/60000;
+        int time = (SDL_GetTicks() - initial)/10000;
+
+
+        population->evolve();
+        epoc++;
 
         if (time > lastReport) {
             lastReport = time;
-            std::cout << time << "\t" << population->debug() << std::endl;
+            std::cout << time << "\t" << epoc << "\t" << population->debug() << std::endl;
         }
 
         render();
