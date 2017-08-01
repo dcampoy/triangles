@@ -10,7 +10,8 @@ public:
     Population(Target* target);
     ~Population();
     void evolve();
-    Individual getBest();
+    SDL_Surface* renderBest();
+    std::string debug();
 private:
     Target* target;
     Individual* best = nullptr;

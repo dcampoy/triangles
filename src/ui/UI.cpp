@@ -1,5 +1,8 @@
 #include "UI.h"
 #include <SDL_events.h>
+#include <SDL_timer.h>
+#include <iostream>
+#include <iomanip>
 
 UI::UI() {
     window = SDL_CreateWindow("Triangles",
@@ -15,6 +18,11 @@ UI::UI() {
 void UI::run() {
     bool quit = false;
     SDL_Event event;
+    Uint32 initial = SDL_GetTicks();
+    int lastReport = 0;
+
+    std::cout << "Complexity cost = 0" << std::endl;
+
     while (!quit) {
         while (SDL_PollEvent(&event) != 0) {
             if (event.type == SDL_QUIT) {
@@ -23,23 +31,42 @@ void UI::run() {
         }
         population->evolve();
 
+        int time = (SDL_GetTicks() - initial)/60000;
+
+        if (time > lastReport) {
+            lastReport = time;
+            std::cout << time << "\t" << population->debug() << std::endl;
+        }
+
         render();
     }
 }
 
 void UI::render() {
+    int width = 128;
+    int height = 192;
+
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 
-    target->render(renderer);
-    population->getBest().render(renderer);
+    // Render target
+    SDL_Rect targetView = { 12, 12, width, height};
+    SDL_RenderCopy(renderer, targetTexture, NULL, &targetView);
+
+    // Render best
+    SDL_Rect bestView = { 24 + width, 12, width, height};
+    SDL_Surface* bestSurface = population->renderBest();
+    SDL_Texture* bestTexture = SDL_CreateTextureFromSurface(renderer, bestSurface);
+    SDL_FreeSurface(bestSurface);
+    SDL_RenderCopy(renderer, bestTexture, NULL, &bestView);
+    SDL_DestroyTexture(bestTexture);
 
     // Render elements here
     SDL_RenderPresent(renderer);
 }
 
 void UI::setTarget(Target *target) {
-    this->target = target;
+    targetTexture = SDL_CreateTextureFromSurface(renderer, target->getSurface());
 }
 
 void UI::setPopulation(Population *population) {

@@ -9,7 +9,7 @@ class Target {
 public:
     void loadImage(std::string path);
     double evaluateFitness(Individual* individual);
-    void render(SDL_Renderer* renderer);
+    SDL_Surface* getSurface();
 private:
     SDL_Surface* original = nullptr;
 };

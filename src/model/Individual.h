@@ -11,8 +11,9 @@ public:
     static Individual* createMonogen();
     Individual();
     ~Individual();
-    Individual* reproduce();
-    void render(SDL_Renderer* renderer);
+    Individual* reproduce(double mutationFactor);
+    SDL_Surface* render();
+    long complexity();
     //Individual mate(Individual partner);
 
 private:
@@ -23,7 +24,9 @@ private:
     };
     std::vector<Triangle> genotype;
 
+    static Triangle generateRandomGen();
 
+    void splitTriangle(const Triangle &t, Triangle &half1, Triangle &half2) const;
 };
 
 
