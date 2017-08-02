@@ -68,7 +68,7 @@ Individual* Individual::reproduce(double mutationFactor) {
             mutation -= remProb;
 
             if (mutation < transProb) {
-                int changeRange = 20.0d * mutationFactor;
+                int changeRange = (int) (20.0 * mutationFactor);
                 if (changeRange < 3) changeRange = 3;
                 int vertex = rand() % 3;
                 int translationX = (rand() % (changeRange * 2 + 1)) - changeRange;
@@ -82,7 +82,7 @@ Individual* Individual::reproduce(double mutationFactor) {
             mutation -= transProb;
 
             if (mutation < cromaticProb) {
-                int changeRange = 20.0d * mutationFactor;
+                int changeRange = (int) (20.0 * mutationFactor);
                 if (changeRange < 3) changeRange = 3;
                 int component = rand() % 3;
                 int translation = (rand() % (changeRange * 2 + 1)) - changeRange;
@@ -94,7 +94,7 @@ Individual* Individual::reproduce(double mutationFactor) {
             mutation -= cromaticProb;
 
             if (mutation < alphaProb) {
-                int changeRange = 20.0d * mutationFactor;
+                int changeRange = (int) (20.0 * mutationFactor);
                 if (changeRange < 3) changeRange = 3;
                 int translation = (rand() % (changeRange * 2 + 1)) - changeRange;
                 t.color += (translation << 24);

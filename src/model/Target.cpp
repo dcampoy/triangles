@@ -45,7 +45,7 @@ double Target::evaluateFitness(Individual* individual) {
 
     SDL_FreeSurface(phenotype);
 
-    return 1.0d - (diff / total);
+    return 1.0 - (diff / total);
 }
 
 SDL_Surface* Target::getSurface() {

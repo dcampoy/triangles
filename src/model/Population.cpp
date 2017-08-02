@@ -16,7 +16,7 @@ void Population::evolve() {
         best = Individual::createMonogen();
         bestFitness = target->evaluateFitness(best);
     } else {
-        Individual *child = best->reproduce(1.0d - bestFitness);
+        Individual *child = best->reproduce(1.0 - bestFitness);
         double childFitness = target->evaluateFitness(child);
         if (childFitness >= bestFitness) {
             delete best;
