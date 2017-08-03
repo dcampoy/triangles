@@ -11,14 +11,17 @@ The algorithms starts with a randomly generated candidate that is considered the
 
 ## Examples
 
-image| beach.jpg
-size | 128x192 
-triangles | 40
-calculation time | 10 minutes
-iterations | 400k
+| param | value |
+| --- | --- |
+| size | 128x192 | 
+| triangles | 40 |
+| calculation time | 10 minutes |
+| iterations | 400k |
 
 ![Example with 40 triangles](docs/beach40.png)
 
+| param | value |
+| --- | --- |
 image| beach.jpg
 size | 128x192 
 triangles | 180
