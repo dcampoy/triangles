@@ -12,7 +12,7 @@ UI::UI() {
                               UI_WINDOW_HEIGHT,
                               SDL_WINDOW_SHOWN);
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 
 void UI::run() {
@@ -30,7 +30,6 @@ void UI::run() {
         }
 
         int time = (SDL_GetTicks() - initial)/10000;
-
 
         population->evolve();
         epoc++;

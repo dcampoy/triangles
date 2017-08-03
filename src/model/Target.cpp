@@ -19,7 +19,7 @@ double Target::evaluateFitness(Individual* individual) {
         return -DBL_MAX;
     }
 
-    double diff = 100 * individual->complexity();
+    double diff = individual->complexity();
 
     SDL_Surface* phenotype = individual->render();
 
